@@ -1,6 +1,9 @@
 Files :
 
-server.js --> run server
-locationController.js --> functions for controller
-locationModel --> schema structure for location
-api-routes --> declaration of routes for contollers in locationController.js
+1. server.js - Run server
+
+2. locationController.js --> Functions for controller
+
+3. locationModel.js --> Schema structure for Location model
+
+4. api-routes.js --> Declaration of routes for contollers in locationController.js

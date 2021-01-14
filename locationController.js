@@ -31,12 +31,32 @@ exports.getById = function (req, res) {
     });
 };
 
+
+exports.getByGeo = function (req, res) {
+    let result = req.params._geodata.split(",").map((e) => parseFloat(e));
+    console.log(result)
+
+    Location.find({geoLocation: result
+    }, function (err, location) {
+        if (err)
+            res.send(err);
+        res.json({
+            message: 'Location details: ',
+            data: location
+        });
+    });
+};
+
+
+
+
 // Handle create location actions
 exports.post = function (req, res) {
     var location = new Location();
     location.locationName = req.body.locationName;
-    location.description = req.body.description;
     location.geoLocation = req.body.geoLocation;
+    location.locationData = req.body.locationData
+    location.locationData.create_date = Date.now()
 
 // save the location and check for errors
     location.save((err) => {
@@ -48,6 +68,30 @@ exports.post = function (req, res) {
         });
     });
 };
+
+
+// Append by id 
+exports.addOnLocationDataById = (req, res) => {
+
+    Location.findById( {_id: req.params._id}, (err, location)  => {
+        if(err)
+            res.send(err);
+
+            location.locationData.push(req.body)
+
+            location.save((err) => {
+                //if (err)
+                //    res.json(err);
+
+                res.json({
+                    message: 'New Location data created',
+                    data: location
+                });
+            });
+
+    });
+}
+
 
 
 // Handle delete location
@@ -72,9 +116,10 @@ exports.update = (req, res) => {
             if (err)
                 res.send(err);
             location.locationName = req.body.locationName ? req.body.locationName : location.locationName;
-            location.description = req.body.description ? req.body.description : location.description;
+            location.locationData = req.body.locationData ? req.body.locationData : location.locationData;
             location.geoLocation = req.body.geoLocation ? req.body.geoLocation : location.geoLocation;
-            location.create_date = Date.now()
+            location.locationData.create_date = Date.now();
+
 
     // save the updated location and check for errors
             location.save((err) => {
@@ -87,4 +132,3 @@ exports.update = (req, res) => {
             });
         });
     };
-

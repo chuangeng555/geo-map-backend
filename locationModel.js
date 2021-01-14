@@ -5,18 +5,28 @@ const LocationSchema = mongoose.Schema({
         type: String,
         required: true 
     },
-    description: {
-        type: String,
-        required: true 
-    },
     geoLocation: {
         type: [Number],
         required: true
     },
-    create_date: {
-        type: Date,
-        default: Date.now
-    }
+
+    locationData: [
+        {
+            summary: {
+                type: String,
+                required: true
+            
+            },
+            description: {
+                type: String,
+                required: true 
+            },
+            create_date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ]
 });
 
 

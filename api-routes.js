@@ -21,9 +21,15 @@ router.route('/locations')
 
 router.route('/locations/:_id')
     .get(locationController.getById)
+    .patch(locationController.addOnLocationDataById)
     .patch(locationController.update)
     .put(locationController.update)
     .delete(locationController.delete);
+
+
+router.route('/locations/geo/:_geodata')
+    .get(locationController.getByGeo)
+
 
 
 module.exports = router;
