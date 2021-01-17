@@ -9,7 +9,7 @@ const cors = require('cors');
 ///////////////////////////////////////
 
 var allowedOrigins = ['http://localhost:3000',
-                      'http://yourapp.com'];
+                      'http://yourapp.com', 'http://geomap-frontend.s3-website-ap-southeast-1.amazonaws.com/'];
 
 app.use(cors({
 origin: function(origin, callback){
