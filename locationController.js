@@ -21,9 +21,11 @@ exports.get = function (req, res) {
 
 // Handle view contact info
 exports.getById = function (req, res) {
-    Location.findById(req.params._id, function (err, location) {
-        if (err)
-            res.send(err);
+    Location.findOne({_id: req.params._id} , function (err, location) {
+        console.log(req.params._id)
+        console.log(location)
+        //if (err)
+        //    res.send(err);
         res.json({
             message: 'Location details: ',
             data: location

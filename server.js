@@ -8,8 +8,7 @@ const cors = require('cors');
 
 ///////////////////////////////////////
 
-var allowedOrigins = ['http://localhost:3000',
-                      'http://yourapp.com', 'http://geomap-frontend.s3-website-ap-southeast-1.amazonaws.com/'];
+var allowedOrigins = ['http://geomap-frontend.s3-website-ap-southeast-1.amazonaws.com', 'http://localhost:3000'];
 
 app.use(cors({
 origin: function(origin, callback){
@@ -25,6 +24,11 @@ origin: function(origin, callback){
 }
 }));
 
+//app.use(function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  next();
+//});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
