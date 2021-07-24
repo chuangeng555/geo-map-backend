@@ -1,0 +1,22 @@
+# serverless.yml
+
+service: express-app
+useDotenv: true
+plugins:
+  - serverless-offline
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: ap-southeast-1
+
+functions:
+  app:
+    handler: server.handler
+    events:
+      - cors: true
+      - http: ANY /api/v1/
+      - http: "ANY /api/v1/{proxy+}"
+    environment:
+      CONNECTION_STRING: ${env:CONNECTION_STRING}
+      PORT: ${env:PORT}

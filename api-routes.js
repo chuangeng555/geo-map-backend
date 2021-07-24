@@ -22,10 +22,12 @@ router.route('/locations')
 router.route('/locations/:_id')
     .get(locationController.getById)
     .patch(locationController.addOnLocationDataById)
-    .patch(locationController.update)
+    //.patch(locationController.update)
     .put(locationController.update)
     .delete(locationController.delete);
 
+router.route('/locations/deleteInnerIds/:_id')//use parent id 
+    .patch(locationController.deleteInnerIds)
 
 router.route('/locations/geo/:_geodata')
     .get(locationController.getByGeo)
