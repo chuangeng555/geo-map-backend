@@ -9,7 +9,7 @@ const cors = require('cors');
 
 //////////////////////////////////////////////////////////////////////////////
 
-var allowedOrigins = ['http://geomap-frontend.s3-website-ap-southeast-1.amazonaws.com', 'http://localhost:3000', 'http://localhost:5000'];
+var allowedOrigins = ['https://zealous-mclean-6a5e1b.netlify.app', 'http://localhost:3000', 'http://localhost:5000'];
 
 
 //const db = mongoose.connection;
