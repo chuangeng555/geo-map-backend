@@ -24,8 +24,8 @@ exports.get = function (req, res) {
 // Handle view contact info
 exports.getById = function (req, res) {
     Location.findOne({_id: req.params._id} , function (err, location) {
-        console.log(req.params._id)
-        console.log(location)
+        // console.log(req.params._id)
+        // console.log(location)
         //if (err)
         //    res.send(err);
         res.json({
@@ -38,7 +38,7 @@ exports.getById = function (req, res) {
 
 exports.getByGeo = function (req, res) {
     let result = req.params._geodata.split(",").map((e) => parseFloat(e));
-    console.log(result)
+    // console.log(result)
 
     Location.find({geoLocation: result
     }, function (err, location) {
@@ -60,6 +60,7 @@ exports.post = function (req, res) {
     location.locationName = req.body.locationName;
     location.geoLocation = req.body.geoLocation;
     location.locationData = req.body.locationData
+    location.imageUrl = req.body.imageUrl 
     location.locationData.create_date = Date.now()
 
 // save the location and check for errors
@@ -146,6 +147,7 @@ exports.update = (req, res) => {
             location.locationName = req.body.locationName ? req.body.locationName : location.locationName;
             location.locationData = req.body.locationData ? req.body.locationData : location.locationData;
             location.geoLocation = req.body.geoLocation ? req.body.geoLocation : location.geoLocation;
+            location.imageUrl = req.body.imageUrl ? req.body.geoLocation : location.geoLocation; 
             location.locationData.create_date = Date.now();
 
     // save the updated location and check for errors

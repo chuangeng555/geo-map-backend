@@ -21,6 +21,10 @@ const LocationSchema = mongoose.Schema({
                 type: String,
                 required: true 
             },
+            imageUrl: {
+                type: String, 
+                required: true
+            }, 
             create_date: {
                 type: Date,
                 default: Date.now
